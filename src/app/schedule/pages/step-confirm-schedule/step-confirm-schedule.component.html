@@ -11,7 +11,7 @@
           <h3 class="text-3xl">Datos de la cita</h3>
           <span class="text-primary text-lg">Servicios</span>
           <ul class="list-none mt-2 pl-0">
-            <li *ngFor="let service of services">{{ service.nameService }}</li>
+            <li *ngFor="let service of services">{{ service?.nameService }}</li>
           </ul>
           <ul class="list-none pl-0">
             <li>
@@ -32,16 +32,16 @@
           <ul class="list-none pl-0">
             <li class="pb-1">
               <span class="text-primary">Cliente:</span>
-              <span class="capitalize"> {{ client.client }} </span>
+              <span class="capitalize"> {{ client?.client }} </span>
             </li>
             <li class="pb-1">
-              <span class="text-primary">Teléfono:</span> {{ client.phone }}
+              <span class="text-primary">Teléfono:</span> {{ client?.phone }}
             </li>
             <li class="pb-1">
-              <span class="text-primary">Email:</span> {{ client.email }}
+              <span class="text-primary">Email:</span> {{ client?.email }}
             </li>
-            <li *ngIf="client.notes !== ''" class="pb-1">
-              <span class="text-primary">Nota:</span> {{ client.notes }}
+            <li *ngIf="client?.notes !== ''" class="pb-1">
+              <span class="text-primary">Nota:</span> {{ client?.notes }}
             </li>
           </ul>
         </div>

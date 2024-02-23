@@ -21,7 +21,7 @@ export class StepSelectDateComponent implements OnInit {
   public loadingHour = false;
   public dateNow = new Date();
   public maxDate = new Date(this.dateNow);
-  public groupHoursAvailable!: SelectItemGroup[];
+  public groupHoursAvailable!: any;
   public loading: boolean = false;
 
   public formDate: FormGroup = this.fb.group({
@@ -183,11 +183,6 @@ export class StepSelectDateComponent implements OnInit {
       this.scheduleService.saveDateSelect(this.formDate.get('date')?.value);
     });
 
-    // OBSERVER PARA EL CAMBIO DE HORA SELECCIONADA POR USUARIO
-    this.formDate.get('hour')?.valueChanges.subscribe(() => {
-      this.scheduleService.saveHour(this.formDate.get('hour')?.value.items);
-    });
-
     // INSERTANDO LOS VALORES DE LOCALSTORAGE
     this.formDate.get('date')?.setValue(this.scheduleService.dateSelected);
     this.formDate
@@ -200,10 +195,6 @@ export class StepSelectDateComponent implements OnInit {
 
     this.maxDate.setMonth(this.dateNow.getMonth() + 9);
     this.config.setTranslation(this.esLocaleSettingsCalendar);
-
-    if (this.isValidDataForm() && !this.formDate.get('hour')?.value) {
-      this.getTimesAvailable();
-    }
   }
 
   onSave() {
