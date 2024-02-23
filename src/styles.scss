@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+textarea {
+  resize: none;
+}
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.p-steps-title {
+  display: none;
+}
+.max-w-500 {
+  max-width: 500px;
+}
+
+.p-divider {
+  margin: 0;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.phone .p-inputtext {
+  padding-left: 2.5rem;
+  width: 100%;
+}
+
+td span.p-disabled {
+  text-decoration: line-through;
+}
+
+.p-tabview .p-tabview-panels {
+  padding: 1.25rem 0;
+}
+
+.border {
+  border: 1px solid #424b57;
+}
+
+.checks_list {
+  background: #1f2937;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  label {
+    cursor: pointer;
+  }
+}
+
+.loading {
+  img,
+  span {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  img {
+    top: 50%;
+    width: 20%;
+  }
+  span {
+    top: 25%;
+    text-shadow: 0px 0px 3px #000;
+    font-weight: bold;
+    opacity: 1;
+  }
+}
+
+.bg-loading {
+  background: radial-gradient(
+    circle,
+    var(--primary-color) 0%,
+    var(--primary-color) 30%,
+    var(--indigo-900) 100%
+  );
+}
+.z-10 {
+  z-index: 10;
+}
+
+@media (width>767px) {
+  .p-steps-title {
+    display: inline;
+  }
+}

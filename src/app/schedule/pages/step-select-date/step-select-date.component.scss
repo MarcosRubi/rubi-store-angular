@@ -1,0 +1,20 @@
+::ng-deep {
+  .end-hour {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+  .hour {
+    input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .p-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .p-listbox-item-group {
+    background-color: transparent;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,82 @@
+<schedule-header></schedule-header>
+<main class="container surface-50 border-bottom-left border-bottom-right mb-5">
+  <p-divider type="solid"> </p-divider>
+  <section class="pt-3 relative">
+    <div
+      class="loading absolute top-0 left-0 w-full h-full bg-loading z-10"
+      *ngIf="loading"
+    >
+      <img
+        src="/assets/images/loader.svg"
+        alt="Animación de carga"
+        aria-hidden="true"
+        class="absolute"
+      />
+      <span class="absolute text-2xl">Guardando información...</span>
+    </div>
+    <h1 class="text-center text-4xl mt-0">Seleccione los servicios</h1>
+    <form (ngSubmit)="onSave()">
+      <div class="card flex flex-wrap gap-4 justify-content-around px-4">
+        <div
+          class="checks_list p-3 flex flex-column gap-2 align-self-start border"
+        >
+          <div *ngFor="let service of listAllServices" class="field-checkbox">
+            <p-checkbox
+              [label]="service.nameService"
+              name="group"
+              [value]="service"
+              [(ngModel)]="servicesSelected"
+              (ngModelChange)="onSelectedValuesChange($event)"
+            ></p-checkbox>
+          </div>
+        </div>
+
+        <div class="flex-1">
+          <ng-container
+            *ngIf="
+              this.formInfoServices.get('servicesSelected')?.value.length > 0
+            "
+          >
+            <p-table
+              [value]="this.formInfoServices.get('servicesSelected')?.value"
+              [tableStyle]="{ 'min-width': '10rem' }"
+              styleClass="p-datatable-striped border"
+            >
+              <ng-template pTemplate="caption">
+                <span class="text-center w-full inline-block"
+                  >Detalles de los servicios seleccionados</span
+                >
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Servicio</th>
+                  <th>Precio</th>
+                  <th>Tiempo estimado</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-service>
+                <tr>
+                  <td>
+                    {{ service.nameService }}
+                  </td>
+                  <td>{{ service.price | currency : "USD" }}</td>
+                  <td>{{ calculateTimeInHoursAndMinutes(service.time) }}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <tr>
+                  <td class="text-right">Total</td>
+                  <td>{{ this.totalPrice | currency : "USD" }}</td>
+                  <td>{{ calculateTimeInHoursAndMinutes(this.totalTime) }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </ng-container>
+        </div>
+      </div>
+      <div class="flex align-items-center justify-content-end gap-5 mx-5 py-5">
+        <p-button label="Siguiente" type="submit"></p-button>
+      </div>
+    </form>
+  </section>
+</main>

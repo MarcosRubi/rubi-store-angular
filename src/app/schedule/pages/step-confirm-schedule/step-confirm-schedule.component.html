@@ -1,0 +1,57 @@
+<schedule-header></schedule-header>
+<main class="container surface-50 border-bottom-left border-bottom-right">
+  <p-divider type="solid"> </p-divider>
+  <section class="pt-3">
+    <h1 class="text-center text-4xl mt-0">Confirme la cita</h1>
+    <div
+      class="flex flex-column md:flex-row px-3 md:px-0 justify-content-around"
+    >
+      <div class="flex">
+        <div>
+          <h3 class="text-3xl">Datos de la cita</h3>
+          <span class="text-primary text-lg">Servicios</span>
+          <ul class="list-none mt-2 pl-0">
+            <li *ngFor="let service of services">{{ service.nameService }}</li>
+          </ul>
+          <ul class="list-none pl-0">
+            <li>
+              <span class="text-primary">Fecha:</span>
+              {{ date | date : "dd MMMM yyyy" : "" : "es-SV" }}
+            </li>
+            <li>
+              <span class="text-primary">Hora:</span>
+              {{ formatHour(hour?.start) }} -
+              {{ formatHour(hour?.end) }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex">
+        <div>
+          <h3 class="text-3xl">Datos del cliente</h3>
+          <ul class="list-none pl-0">
+            <li class="pb-1">
+              <span class="text-primary">Cliente:</span>
+              <span class="capitalize"> {{ client.client }} </span>
+            </li>
+            <li class="pb-1">
+              <span class="text-primary">Teléfono:</span> {{ client.phone }}
+            </li>
+            <li class="pb-1">
+              <span class="text-primary">Email:</span> {{ client.email }}
+            </li>
+            <li *ngIf="client.notes !== ''" class="pb-1">
+              <span class="text-primary">Nota:</span> {{ client.notes }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="flex align-items-center justify-content-end gap-5 mx-5 pb-5">
+      <p-button label="Anterior" [outlined]="true"></p-button>
+      <p-button label="Confirmar"></p-button>
+    </div>
+  </section>
+</main>

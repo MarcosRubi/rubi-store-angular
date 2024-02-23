@@ -1,0 +1,105 @@
+<schedule-header></schedule-header>
+<main class="container surface-50 border-bottom-left border-bottom-right">
+  <form [formGroup]="formInfoClient" (ngSubmit)="onSave()">
+    <p-divider type="solid"> </p-divider>
+    <section class="pt-3 relative">
+      <div
+        class="loading absolute top-0 left-0 w-full h-full bg-loading z-10"
+        *ngIf="loading"
+      >
+        <img
+          src="/assets/images/loader.svg"
+          alt="Animación de carga"
+          aria-hidden="true"
+          class="absolute"
+        />
+        <span class="absolute text-2xl">Guardando información...</span>
+      </div>
+      <h1 class="text-center text-4xl mt-0">Ingrese su información</h1>
+
+      <div
+        class="card flex align-items-center mx-auto gap-6 flex-column my-5 max-w-30rem px-3"
+      >
+        <span class="p-float-label p-input-icon-left w-full">
+          <i class="pi pi-user"></i>
+          <input
+            pInputText
+            id="name"
+            formControlName="client"
+            class="w-full"
+            [ngClass]="{ 'border-red-500': getError('client') }"
+          />
+          <label for="name">Nombre</label>
+          <span
+            class="text-xs text-red-500 absolute bottom-0 left-0 error-msg"
+            *ngIf="getError('client')"
+            >{{ getError("client") }}
+          </span>
+        </span>
+
+        <span class="p-float-label p-input-icon-left w-full">
+          <i class="pi pi-envelope"></i>
+          <input
+            pInputText
+            id="email"
+            formControlName="email"
+            class="w-full"
+            [ngClass]="{ 'border-red-500': getError('email') }"
+          />
+          <label for="email">Email</label>
+          <span
+            class="text-xs text-red-500 absolute bottom-0 left-0 error-msg"
+            *ngIf="getError('email')"
+            >{{ getError("email") }}
+          </span>
+        </span>
+
+        <span class="p-float-label p-input-icon-left w-full">
+          <i class="pi pi-phone"></i>
+          <p-inputMask
+            mask="9999-9999"
+            formControlName="phone"
+            id="phone"
+            class="w-full phone"
+            [ngClass]="{ 'border-red-500': getError('phone') }"
+          ></p-inputMask>
+          <label for="phone">Teléfono</label>
+          <span
+            class="text-xs text-red-500 absolute bottom-0 left-0 error-msg"
+            *ngIf="getError('phone')"
+            >{{ getError("phone") }}
+          </span>
+        </span>
+
+        <span class="p-float-label p-input-icon-left w-full">
+          <i class="pi pi-comment t-1"></i>
+          <textarea
+            id="float-input"
+            rows="5"
+            cols="30"
+            pInputTextarea
+            class="w-full"
+            formControlName="notes"
+          ></textarea>
+          <label for="float-input">Notas</label>
+        </span>
+      </div>
+
+      <p class="max-w-30rem mx-auto text-xs text-pretty px-3">
+        Si no podemos contactarlo con la información proporcionada, lamentamos
+        informarle que su cita será cancelada automáticamente. Por favor,
+        proporcione datos actualizados para evitar cualquier inconveniente.
+        Gracias por su cooperación.
+      </p>
+
+      <div class="flex align-items-center justify-content-end gap-5 mx-5 pb-5">
+        <p-button label="Anterior" [outlined]="true"></p-button>
+        <p-button
+          label="Siguiente"
+          type="submit"
+          [loading]="loading"
+        ></p-button>
+      </div>
+    </section>
+  </form>
+</main>
