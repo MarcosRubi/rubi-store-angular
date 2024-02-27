@@ -55,7 +55,7 @@ export class StepSelecServicesComponent implements OnInit {
       this.MessageService.add({
         severity: 'success',
         summary: 'Completado',
-        detail: 'Ya casi lo tienes!',
+        detail: 'Excelente!',
       });
 
       setTimeout(() => {

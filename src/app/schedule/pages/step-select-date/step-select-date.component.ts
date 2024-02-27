@@ -246,6 +246,7 @@ export class StepSelectDateComponent implements OnInit {
       }
 
       setTimeout(() => {
+        console.log('a');
         this.loadingHour = false;
         this.updateHoursAvailable();
 
@@ -356,6 +357,7 @@ export class StepSelectDateComponent implements OnInit {
     );
 
     // TODO: ENVIAR EL RANGO DE TIEMPO A VERIFICAR, SI HAY QUE LO RETORNE, SINO NO RETORNA NADA
+    return;
     return {
       label: 'Hora solicitada',
       items: [{ start: hourStartService, end: hourEndService }],
