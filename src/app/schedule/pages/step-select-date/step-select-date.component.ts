@@ -195,6 +195,13 @@ export class StepSelectDateComponent implements OnInit {
 
     this.maxDate.setMonth(this.dateNow.getMonth() + 9);
     this.config.setTranslation(this.esLocaleSettingsCalendar);
+
+    const hourSelecterForUser = this.getTimeSelectedForUser();
+    if (hourSelecterForUser && !this.scheduleService.hourSelected) {
+      this.getTimesAvailable();
+    } else {
+      this.updateHoursAvailable(hourSelecterForUser);
+    }
   }
 
   onSave() {
@@ -246,7 +253,6 @@ export class StepSelectDateComponent implements OnInit {
       }
 
       setTimeout(() => {
-        console.log('a');
         this.loadingHour = false;
         this.updateHoursAvailable();
 
@@ -357,7 +363,6 @@ export class StepSelectDateComponent implements OnInit {
     );
 
     // TODO: ENVIAR EL RANGO DE TIEMPO A VERIFICAR, SI HAY QUE LO RETORNE, SINO NO RETORNA NADA
-    return;
     return {
       label: 'Hora solicitada',
       items: [{ start: hourStartService, end: hourEndService }],
